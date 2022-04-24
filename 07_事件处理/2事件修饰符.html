@@ -33,7 +33,7 @@
 <body>
     <!-- 
         Vue中的事件修饰符
-            1.prvent：阻止默认事件(常用)
+            1.prevent：阻止默认事件(常用)
             2.stop：阻止事件冒泡(常用)
             3.once：事件只触发一次(常用)
             
@@ -75,6 +75,12 @@
             <li>456</li>
             <li>789</li>
         </ul>
+
+        <hr>
+        <!-- 修饰符可以连续写 -->
+        <div class="demo1" @click="show">
+            <a href="http://www.baidu.com" @click.prevent.stop="show">百度链接</a>
+        </div>
     </div>
     <script>
         new Vue({

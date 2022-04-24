@@ -33,7 +33,10 @@
         <p>{{name}}</p>
 
         <!-- @keyup.enter   Vue 中常用的按键别名 练习如下 -->
-        <input type="text" placeholder="按下回车提示输入" @keyup.huiche="show">
+        <!-- <input type="text" placeholder="按下回车提示输入" @keyup.huiche="show"> -->
+
+        <!-- 可以使用 ctrl.y 的方式指定组合键 -->
+        <input type="text" placeholder="按下回车提示输入" @keyup.ctrl.y="show">
     </div>
     <script>
         Vue.config.keyCodes.huiche = 13;    //定义了一个按键名

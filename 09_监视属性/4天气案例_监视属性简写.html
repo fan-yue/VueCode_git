@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="a">
+        <h2>今天天气很{{info}}</h2>
+        <button @click="change">切换天气</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#a',
+            data:{
+                isHot:true,
+            },
+            computed:{
+                info(){
+                    return this.isHot ? '热' :'凉';
+                }
+            },
+            methods: {
+                change(){
+                    this.isHot = !this.isHot
+                }
+            },
+            watch: {
+                // 正常写法
+                /* isHot:{
+                    // immediate:true,         //初始化时让  handler函数调用一下
+                    // deep:true,          //深度监视
+                    // handler是一个函数 什么时候调用？ 当isHot发生改变时，handler有两个参数，newVlaue,oldValue
+                    handler(newVlaue,oldValue){
+                        console.log('isHot被调用了',newVlaue,oldValue);
+                    }
+                } */
+                // 简写，当只有 handler函数时，可以使用简写形式，如果有配置项的话，不可以使用简写形式
+                /* isHot(newVlaue,oldValue){
+                    console.log('isHot被调用了',newVlaue,oldValue);
+                } */
+            }
+        })
+
+        // 正常的外部写法
+        /* vm.$watch('isHot',{
+            immediate:true,         //初始化时让  handler函数调用一下
+            deep:true,          //深度监视
+            // handler是一个函数 什么时候调用？ 当isHot发生改变时，handler有两个参数，newVlaue,oldValue
+            handler(newVlaue,oldValue){
+                console.log('isHot被调用了',newVlaue,oldValue);
+            }
+        }) */
+
+        // 外部写法的简写形式
+        vm.$watch('isHot',function(newVlaue,oldValue){
+            console.log('isHot被调用了',newVlaue,oldValue);
+        })
+    </script>
+</body>
+</html>
