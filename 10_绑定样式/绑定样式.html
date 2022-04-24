@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .border1{
+            width: 400px;
+            height: 700px;
+            border: 1px solid black;
+        }
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: greenyellow;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+        .font{
+            font-size: 40px;
+        }
+        .fontColor{
+            color: white;
+        }
+        .fontf{
+            font-family: 楷体;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        绑定对象：
+            1.class样式
+                :class="xxx",xxx可以时字符串，对象，数组
+                    字符串写法：类名不确定，需要动态获取
+                    对象写法适用于：要绑定多个样式，个数不确定，名字也不确定
+                    数组写法适用于：要绑定多个样式，个数确定，名字也确定，但是不确定用不用
+            2.style样式
+                :style='{fontSize:xxx}' 其中 xxx 时动态值
+                :style='[a,b]',其中a,b是样式对象。
+
+     -->
+
+    <!-- 绑定 class 样式，字符串写法，适用于样式类名不确定，需要动态确定 -->
+    <div id="a" class="border1" :class="mod" @click="change">
+        {{name}}
+
+        <!-- 绑定 class 样式，数组写法，适用于 要绑定的样式个数不确定，名字也不确定 -->
+        <p :class="arr">使用vue，绑定class样式的数组写法，修改这里字体的样式</p>
+
+        <!-- 绑定 class 样式，对象写法，适用于 要绑定的样式个数确定，名字也确定，但是要动态决定用不用 -->
+        <p :class="classObj">使用vue，绑定class样式的对象写法，修改这里字体的样式</p>
+
+        <!-- 绑定 行内style 样式，对象写法 -->
+        <p :style="styleObj">绑定 行内style 样式，对象写法</p>
+
+        <!-- 绑定 行内style 样式，数组写法 -->
+        <p :style="styleArr">绑定 行内style 样式，数组写法</p>
+    </div>
+    <script>
+        new Vue({
+            el:'#a',
+            data:{
+                name:'YF',
+                mod:'red',
+                arr:['font','font-color','fontf'],
+                classObj:{
+                    font:true,
+                    fontColor:true
+                },
+                styleObj:{
+                    fontSize:'40px',
+                    color:'pink'
+                },
+                styleArr:[
+                    {
+                        fontSize:'80px',
+                    },
+                    {
+                        color:'aqua'
+                    }
+                ]
+            },
+            methods: {
+                change(){
+                    const arr = ['red','green','yellow'];
+                    const index = Math.floor(Math.random()*3);
+                    this.mod = arr[index];
+                }
+            },
+        })
+    </script>
+</body>
+</html>
