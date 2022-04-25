@@ -9,23 +9,21 @@
 </head>
 <body>
     <div id="a">
-        {{name}}
+        <a v-bind:href="baidu">百度链接</a>
+        <a :href="bilbil">哔哩哔哩</a>
+        <p>{{obj.a+obj.b}}</p>
     </div>
-    <div id="b">
-        {{test}}
-    </div>
+
     <script>
         new Vue({
-            el:"#a",
+            el:'#a',
             data:{
-                name:'YF'
-            }
-        })
-
-        new Vue({
-            el:"#b",
-            data:{
-                test:'测试'
+                baidu:'http://www.baidu.com',
+                bilbil:'http://www.bilbil.com',
+                obj:{
+                    a:1,
+                    b:2
+                }
             }
         })
     </script>

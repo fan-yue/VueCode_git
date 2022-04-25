@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="a">
+        单项绑定v-bind ： <input type="text" v-bind:value="biao">
+        <br>
+        单项简写 : <input type="text" :value="biaoj">
+        <p>{{biao}}</p>
+        <p>{{biaoj}}</p>
+        <hr>
+
+
+        双向绑定 v-model : <input type="text" v-model:value="biaovModel">
+        <br>
+
+        双向绑定简写 : <input type="text" v-model="biaoModelj">
+        <p>{{biaovModel}}</p>
+        <p>{{biaoModelj}}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#a',
+            data:{
+                biao:'表单值',
+                biaoj:'单项简写',
+                biaovModel:'双向绑定',
+                biaoModelj:'双向绑定简写'
+            }
+        })
+    </script>
+</body>
+</html>
