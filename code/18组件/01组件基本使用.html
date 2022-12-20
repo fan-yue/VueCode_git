@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="a">
+        <!-- 编写组件标签 -->
+        <school></school>
+        <hr>
+        <student></student>
+        <hr>
+        <student></student>
+    </div>
+
+    <script>
+        // 创建 school 组件
+        const school = Vue.extend({
+            // 组件定义时，不能写 el 配置项，因为最终所有组件都要被一个 VM 管理，由 VM 决定服务与谁
+            template:
+            `
+            <div>
+                <h2>学校名称{{schoolName}}</h2>
+                <h2>学校地址{{address}}</h2>
+                <button @click='tishi()'>按钮</button>
+            </div>
+            `
+            ,
+            data(){
+                return{
+                    schoolName:'康尔',
+                    address:'沣东',
+                }
+            },
+            methods: {
+                tishi(){
+                    alert(this.schoolName);
+                }
+            },
+        })
+
+        // 创建 student 组件
+        const student = Vue.extend({
+            // 组件定义时，不能写 el 配置项，因为最终所有组件都要被一个 VM 管理，由 VM 决定服务与谁
+            template:
+            `
+            <div>
+                <h2>学生姓名{{stdnentName}}</h2>
+                <h2>学生年龄{{age}}</h2>
+            </div>
+            `
+            ,
+            data(){
+                return{
+                    stdnentName:'zs',
+                    age:18
+                }
+            }
+        })
+
+        // 创建 vm 实例
+        new Vue({
+            el:"#a",
+            // 绑定组件的关键字，注册组件（局部祖册）
+            components:{
+                // 组件 ：对应的组件名  （键:键值）
+                school:school,
+                student:student
+            }
+        })
+
+        // 正常创建实例
+        /* new Vue({
+            el:'#a',
+            data:{
+                schoolName:'康',
+                address:'沣东',
+                stdnentName:'zs',
+                age:18
+            }
+        }) */
+    </script>
+</body>
+</html>

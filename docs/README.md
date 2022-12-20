@@ -1,11 +1,3 @@
-### 学习及参考链接
-
-[尚硅谷Vue2.0+Vue3.0全套教程丨vuejs从入门到精通_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1Zy4y1K7SH?spm_id_from=333.337.search-card.all.click&vd_source=00b1a5a915b4ad1983bc874853b6206a)
-
-
-
-
-
 ## 初识Vue
 
 1.想让Vue工作，必须创建一个Vue实例，且要传入一个配置对象
@@ -26,7 +18,7 @@
 
 `例子：`
 
-```
+```vue
 <!-- 准备一个容器 -->
     <div id="root">
         <h1>hello,{{name}},{{age}}</h1>

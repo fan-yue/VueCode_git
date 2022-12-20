@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="a">
+        {{name}}
+        <a :href="baidu">baidu链接</a>
+        <form action="">
+            <input type="text" v-model:value="ip">
+        </form>
+        <p>{{ip}}</p>
+    </div>
+    
+    <script>
+        new Vue({
+            el:'#a',
+            data:{
+                name:'YF',
+                baidu:'http://www.baidu.com',
+                ip:'input里面的文字'
+            }
+        })
+    </script>
+</body>
+</html>

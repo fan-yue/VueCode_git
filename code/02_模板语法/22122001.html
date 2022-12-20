@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <a v-bind:href="baidu">百度链接</a>
+        <a :href="yongyou">用友</a>
+        <p>{{obj.a+obj.b}}</p>
+    </div>
+
+    <div id="one">
+        <input type="text" v-bind:value="val">
+        <p>{{val}}</p>
+        <input type="text" v-model:value="val2">
+        <p>{{val2}}</p>
+    </div>
+    <script>
+        const x = new Vue({
+            el:"#root",
+            data:{
+                baidu:'http://www.baidu.com',
+                yongyou:"http://www.yongyou.com",
+                obj:{
+                    a:1,
+                    b:2
+                }
+            }
+        })
+
+        const x1 = new Vue({
+            el:'#one',
+            data:{
+                val:'这是vlaue1的值',
+                val2:"这是value2的值"
+            }
+        })
+    </script>
+</body>
+</html>

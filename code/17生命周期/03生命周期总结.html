@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="a">
+        <!-- p标签通过Vue绑定的行内样式没有绑定上 -->
+        <h2 :style="{opactiy}">文字，逐帧透明度{{opactiy}}</h2>
+        <button @click="stop()">点击停止数字</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#a',
+            data:{
+                opactiy:1
+            },
+            methods: {
+                stop(){
+                    // 清除定时器销毁，不完全
+                    // clearInterval(this.timer);
+                    this.$destroy();
+                }    
+            },
+            // mounted()函数使用场景：vue完成模板的解析并把初始的真实DOM元素放入页面后（挂载完毕）调用
+            mounted() {
+                // this.timer 指向 vue ，就可以用在上面的方法中
+                this.timer = setInterval(() => {
+                    console.log('setInterval');
+                    this.opactiy -= 0.01;
+                    if(this.opactiy <= 0){
+                        this.opactiy = 1;
+                    }
+                }, 16);
+            },
+            beforeDestroy() {
+                // 使用上述 beforeDestroy() 函数的特性，清除定时器
+                clearInterval(this.timer);
+            },
+        })
+       
+    </script>
+</body>
+</html>

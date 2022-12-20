@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="a">
+        <h2 v-pre>正常文本显示</h2>
+        <h2 v-pre>当前的n值时{{n}}</h2>
+        <button v-pre @click="n++">点击时，n+1</button>
+    </div>
+    <script>
+        new Vue({
+            el:'#a',
+            data:{
+                n:1
+            }
+        })
+    </script>
+</body>
+</html>

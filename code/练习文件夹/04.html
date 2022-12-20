@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="a">
+        <button v-on:click="bt">按钮</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#a',
+            data:{
+                name:'123'
+            },
+            methods: {
+                bt(event){
+                    console.log(event.layerX);
+                    //evnet为事件，layerX是事件中的一个属性
+                }
+            }
+        })
+    </script>
+</body>
+</html>

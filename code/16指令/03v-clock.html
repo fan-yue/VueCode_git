@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 标签的属性选择器 */
+        [v-clock]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="a">
+        <!-- 插值语法 -->
+        <p v-clock>{{name}}</p>
+    </div>
+
+    <!-- 模拟延迟加载，必须等vue.js加载出来，插值语法才会被解析，可以拿来做延迟，想要快速加载，要加钱 -->
+    <script src="../js/vue.min.js"></script>
+
+    <script>
+        new Vue({
+            el:'#a',
+            data:{
+                name:'YF',
+            }
+        })
+    </script>
+</body>
+</html>

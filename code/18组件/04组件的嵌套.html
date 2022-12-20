@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="a">
+        <app></app>
+    </div>
+
+    <script>
+        // 创建 student 组件
+        const student = Vue.extend({
+            // 组件定义时，不能写 el 配置项，因为最终所有组件都要被一个 VM 管理，由 VM 决定服务与谁
+            template:
+            `
+            <div>
+                <h2>学生姓名{{stdnentName}}</h2>
+                <h2>学生年龄{{age}}</h2>
+            </div>
+            `
+            ,
+            data(){
+                return{
+                    stdnentName:'zs',
+                    age:18
+                }
+            }
+        })
+
+        // 创建组件
+        const hello = Vue.extend({
+            // name 关键字：设置组件在 vue 中显示的名字
+            name:"test",
+            template:`
+            <div>
+                <h2>学校名称{{name}}</h2>
+                <h2>学校地址{{address}}</h2>
+                <student></student>
+            </div>
+            `,
+            data() {
+                return {
+                    name:"鱼肚白",
+                    address:'天空'
+                }
+            },
+            // 组件嵌套
+            components:{
+                'student':student
+            }
+        })
+        // 创建一个hello的同级组件
+        const hz = Vue.extend({
+            template:
+            `
+            <div>
+                <h2>学校名称{{name}}</h2>
+                <h2>学校地址{{address}}</h2>
+            </div>
+            `,
+            data() {
+                return {
+                    name:"华中",
+                    address:"华盛顿"
+                }
+            },
+        })
+        
+        // 定义 app 组件
+        const app = Vue.extend({
+            template:
+            `
+            <div>
+                <hello></hello> 
+                <hz></hz> 
+            </div>
+            `,
+            components:{
+                'hello':hello,
+                'hz':hz
+            }
+        })
+
+        // 创建实例
+        new Vue({
+            el:'#a',           
+            // 局部注册
+            components:{
+                'app':app
+                },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="a">
+        <!-- 差值语法 -->
+        <p>{{name}}</p>
+        <!-- v-text 写法 -->
+        <p v-text="name"></p>
+        <p v-text="h3"></p>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#a',
+            data:{
+                name:'YF',
+                h3:'<h3>便签实验</h3>'
+            }
+        })
+    </script>
+</body>
+</html>

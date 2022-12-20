@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.11.2/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="a">
+        <h2>显示格式化后的时间</h2>
+        <!-- 过滤器实现(传参)，-->
+        <h3>{{time | ttimeFormate('YYYY年MM月DD日 HH:mm:ss') | mysilce}}</h3>
+    </div>
+
+    <div id="b">
+        <h2>实现filters全局过滤器</h2>
+        <h3>{{msg | mysilce}}</h3>
+    </div>
+    <script>
+        // 配置全局filters过滤器
+        Vue.filter('myslice',function(value){
+            return value.slice(0,4);
+        })
+        new Vue({
+            el:"#a",
+            data:{
+                time:1621561377603
+            },
+            // 局部过滤器实现
+            filters:{
+                // value  是传过来的 time值
+                ttimeFormate(vlaue,str){
+                    // value传的我是time的值
+                    console.log('@',vlaue);
+                    return dayjs(vlaue).format(str);
+                }
+            },
+        })
+
+        new Vue({
+            el:"#b",
+            data:{
+                // 通过全局过滤器截取 hello 字符串
+                msg:'hello,world'
+            }
+        })
+           /*  // 计算属性实现
+            
+           
+            computed:{
+                fmtime(){
+                    return dayjs(this.time).format('YYYY年MM月DD日 HH:mm:ss');
+                }
+            },
+            // 方法实现
+            methods: {
+                mfmtime(){
+                    return dayjs(this.time).format('YYYY年MM月DD日 HH:mm:ss');
+                }
+            }, 
+            
+            <!-- 计算属性实现 -->
+        <h3>{{fmtime}}</h3>
+        <!-- 方法实现 -->
+        <h3>{{mfmtime()}}</h3>
+            
+            */
+
+    </script>
+</body>
+</html>

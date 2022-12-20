@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <!-- 需求2：定义一个 v-fbind 指令，和 v-bind 功能类似，但是可以让其绑定的 input 元素默认获取焦点 -->
+    <div id="a">
+        <input type="text" v-fbind:value="n">
+        <button @click="n++">n+1按钮</button>
+    </div>
+    <div id="b">
+        <input type="text" v-fbind:vlaue="x">
+        <button @click="x++">x+1</button>
+    </div>
+    <script>
+        // 全局配置 directive 自定义指令
+        Vue.directive('fbind',{
+            // 指令与元素成功绑定时（初始化）
+            bind(element,binding){
+                element.value = binding.value;
+            },
+            // 指令所在元素被插入页面时
+            inserted(element,binding){
+                element.focus();
+            },
+            // 指令所在的模板被重新解析时
+            update(element,binding) {
+                // this 指向的是 window，并且 vm 对象
+                console.log('fbind-upate',this);
+                element.value = binding.value;
+            },
+        })
+        new Vue({
+            el:'#a',
+            data:{
+                n:1
+            }
+        })
+
+        new Vue({
+            el:'#b',
+            data:{
+                x:1
+            }
+        })
+    </script>
+</body>
+</html>

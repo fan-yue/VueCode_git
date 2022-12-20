@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue文档</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <!-- 侧边栏样式1 -->
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" /> -->
+  <!-- 侧边栏样式2 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: '',
+      repo: '',
+      maxLevel: 3,     // 解析 MarkDown 文件时的最大目录层数
+      // coverpage: true,  //封面
+      loadNavbar: true,
+      loadSidebar: true,
+      subMaxLevel: 9,     //菜单栏显示目录的层数
+      // auto2top: true,  // 切换显示的文档时，自动跳转到页面顶部
+      search: {         //搜索功能
+      maxAge: 86400000, // Expiration time, the default one day
+      paths: 'auto',
+      placeholder: '🔍 Type to search ',
+      noData: '😞 No Results! ',
+      depth: 6
+      }
+    }
+  </script>
+  <!-- 搜索功能 -->
+  <script src="//cdn.bootcss.com/docsify/4.5.9/plugins/search.min.js"></script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+</body>
+</html>

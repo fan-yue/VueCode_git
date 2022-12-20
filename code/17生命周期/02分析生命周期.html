@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>n值为 {{n}}</h2>
+        <button  @click="add()">按钮</button>
+        <!-- 销毁按钮 -->
+        <button @click="die()">销毁n+1按钮</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                n:1
+            },
+            methods: {
+                add(){
+                    console.log('add');
+                    this.n++
+                },
+                die(){
+                    console.log('die点击');
+                    // 点击 die() 按钮，使用 this.$destroy() 函数功能,销毁vue实例,此案例中，当使用后，新增n的按钮失效
+                    this.$destroy();
+                }
+                
+            },
+            // beforeCreate() 函数，无法通过 vm 访问到 data 中的数据，methods 中的方法。
+            // 初始化：生命周期、事件，但数据代理还未开始
+            beforeCreate() {
+                console.log('beforeCreate');
+                // 查看 this 的指向
+                // console.log(this);
+                // 断点调试，让代码执行到这一步暂停。
+                // debugger;
+            },
+            // created() 函数，可以通过 vm 
+            // 初始化：数据监测、数据代理
+            created() {
+                console.log('created');
+                // console.log(this);
+            },
+            // beforeMount() 函数，页面呈现的是 未经Vue编译 的DOM结构，目前所有对DOM的操作，最终都不生效，可以从打的断点中看出来。
+            beforeMount() {
+                console.log('beforeMount');
+                // console.log(this);
+                // debugger;
+            },
+            // mounted()函数使用场景：vue完成模板的解析并把初始的真实DOM元素放入页面后（挂载完毕）调用
+            // 1、页面中呈现的是 经过Vue编译 的DOM
+            // 2、对DOM的操作均有效（但是尽可能避免）
+            // 至此，初始化过程结束，一般在此进行：开启定时器、发送网络请求、订阅消息、绑定自定义事件、等初始化操作
+            mounted() {
+                console.log('mounted');
+                // debugger;
+            },
+            // beforeUpdate() 函数 数据是最新的，但是页面时旧的。（页面和数据未保持同步）
+            beforeUpdate() {
+                console.log('beforeUpdate');
+                console.log(this.n);
+                // debugger;
+            },
+            // updated() 函数 数据是最新的，页面也是最新的。（页面和数据保持了同步）
+            updated() {
+               console.log('updated');
+               console.log(this.n);
+            //    debugger;
+            },
+            // beforeDestroy() 函数，vm中所有的：data、methods、指令等等，都处于可用状态，马上要执行销毁过程。一般在此阶段：关闭定时器、取消订阅消息、解绑自定义事件等收尾操作。
+            beforeDestroy() {
+                console.log('beforeDestroy被调用');
+                // debugger;
+            },
+            // destroyed() 函数，用来结尾，使用率不高
+            destroyed() {
+               console.log('使用率不高'); 
+            },
+        })
+    </script>
+</body>
+</html>

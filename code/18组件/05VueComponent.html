@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="a">
+        <school></school>
+    </div>
+
+    <script>
+        // 创建 school 组件
+        const school = Vue.extend({
+            // 组件定义时，不能写 el 配置项，因为最终所有组件都要被一个 VM 管理，由 VM 决定服务与谁
+            template:
+            `
+            <div>
+                <h2>学校名称{{schoolName}}</h2>
+                <h2>学校地址{{address}}</h2>
+            </div>
+            `
+            ,
+            data(){
+                return{
+                    schoolName:'康尔',
+                    address:'沣东',
+                }
+            },
+        })
+        
+        new Vue({
+            el:"#a",
+            components:{
+                'school':school
+            }
+        })
+    </script>
+</body>
+</html>
