@@ -2,15 +2,15 @@
 
 ### v-on：XXX
 
-1、使用 v-on:xxx 后者 @xxx 绑定事件，其中 xxx 就是事件名
+1、使用 v-on:xxx 后者 @xxx 绑定事件，其中 xxx 就是事件名。
 
-2、事件的回调需要配置在 mehtods 对象中 ,最终会在 vm 上显示
+2、事件的回调需要配置在 `mehtods` 对象中 ,最终会在 `vm` 上显示。
 
-3、methods 中配置的函数，不需要用箭头函数！否则this指向就不是 vm 而是 window
+3、`methods` 中配置的函数，不需要用箭头函数！否则this指向就不是 `vm` 而是 `window`。
 
-4、methods 中配置的函数，都是被 Vue 所管理的函数，this指向 是 vm 后者 组件实例对象。
+4、`methods` 中配置的函数，都是被 Vue 所管理的函数，`this`指向 是 vm 后者 组件实例对象。
 
-5、@click='show1' 和 @click='show1($event) ' 效果一致，但是后者可以传参
+5、`@click='show1'` 和 `@click='show1($event) '` 效果一致，但是后者可以传参。
 
 ```
     <div id="a">
@@ -33,7 +33,7 @@
 
 
 
-@click='show1($event) '   演示
+`@click='show1($event) '`   演示
 
 ```
     <div id="a">
@@ -57,13 +57,47 @@
 
 
 
+汇总代码
+
+```vue
+    <div id="root">
+        <h1>欢迎来到{{name}}进行学习</h1>
+        <!-- v-on的使用方法 -->
+        <button v-on:click="show">点我提示信息</button>
+        <!-- v-on简写形式  @xxx绑定事件,    $event 传参 -->
+        <button @click="show2($event,66)">点我提示信息2</button>
+    </div>
+
+    <script>
+        const vm =  new Vue({
+            el:'#root',
+            data:{
+                name:'家里蹲'
+            },
+            methods: {
+                show(){
+                    alert('测试');
+                },
+                show2(event,number){
+                    console.log(event,number);
+                    alert('测试!!!!!');
+                }
+            },
+        })
+    </script>
+```
+
+
+
+
+
 ## 事件修饰符
 
-1.prevent：阻止默认事件(常用)
+1.`prevent`：阻止默认事件(常用)
 
-2.stop：阻止事件冒泡(常用)
+2.`stop`：阻止事件冒泡(常用)
 
-3.once：事件只触发一次(常用)
+3.`once`：事件只触发一次(常用)
 
 ​      
 
@@ -71,11 +105,11 @@
 
 ​      
 
-4.capture ： 使用事件的捕获方式
+4.`capture` ： 使用事件的捕获方式
 
-5.self：只有 event.target 是当前操作的元素才是触发事件
+5.`self`：只有 `event.target` 是当前操作的元素才是触发事件
 
-6.passive ： 事件的默认行为立即执行，无需等待时间回调执行完毕;
+6.`passive` ： 事件的默认行为立即执行，无需等待时间回调执行完毕;
 
 
 
@@ -83,7 +117,7 @@
 
 给事件后面添加`prevent`阻止默认事件
 
-```
+```vue
 <body>
     <div id="a">
         <a href="http://www.baidu.com" @click.prevent="tc">链接</a>
@@ -117,7 +151,7 @@
 
 `HTML`
 
-```
+```vue
 <body>
     <div id="a">
         <div class="demo1" @click="tc">
@@ -144,7 +178,7 @@
 
 
 
-```
+```vue
     <div id="a">
         <button @click.once="tc">使用once，让事件只触发一次</button>
     </div>
@@ -182,7 +216,7 @@
 
 `HTML`
 
-```
+```vue
     <div id="a">
         <div class="box1" @click.capture="mes(1)">
             box1
@@ -218,7 +252,7 @@
 
 `HTML`
 
-```
+```vue
 <body>
     <div id="a">
         <div class="demo1" @click.self="selfT">
@@ -260,7 +294,7 @@
 
 `HTML`
 
-```
+```vue
     <div id="a">
         <!-- wheel js事件，鼠标滚轮滚动一次触发一次 -->
         <ul  class="list" @wheel.passive="demo">
@@ -291,7 +325,7 @@
 
 `@click.prevent.stop="show"`
 
-```
+```vue
     <div id="a">
         <div class="class" @click="show">
             <!-- 阻止超链接的跳转并且阻止事件冒泡 -->
@@ -357,7 +391,7 @@
 
 Vue未提供别名的按键，可以使用按键原始的`key`值去绑定，但要注意转为 `kebab-case` (短横线命名)，不常用
 
-```
+```vue
     <div id="a">
         <!-- keyup  js事件，鼠标按下 -->
         <input type="text" placeholder="按下回车提示输入" @keyup.caps-lock="showInfo">
@@ -385,7 +419,7 @@ Vue未提供别名的按键，可以使用按键原始的`key`值去绑定，但
 
 ​      (2)配合`keydown`使用：正常触发事件
 
-```
+```vue
     <div id="a">
         <!-- keydown  js事件 -->
         <input type="text" placeholder="按下回车提示输入" @keydown.tab="showInfo">
@@ -415,7 +449,7 @@ Vue未提供别名的按键，可以使用按键原始的`key`值去绑定，但
 
 可以去定制按键名。(不太推荐，基本默认的一般都够用了)
 
-```
+```vue
     <div id="a">
         <!-- keydown  js事件 -->
         <input type="text" placeholder="按下回车提示输入" @keydown.huiche="showInfo">
@@ -432,5 +466,28 @@ Vue未提供别名的按键，可以使用按键原始的`key`值去绑定，但
             },
         })
     </script>
+```
+
+
+
+### 键盘事件也可以连续写
+
+例子：仅`ctrl+y`才可以触发事件
+
+```vue
+     <div id="root">
+        <input type="text" placeholder="按下回车提示输入" @keyup.ctrl.y="show"> 
+     </div>
+
+     <script>
+        new Vue({
+            el:'#root',
+            methods:{
+                show(e){
+                    console.log(e.key+'   '+e.keyCode);
+                }
+            }
+        })
+     </script>
 ```
 

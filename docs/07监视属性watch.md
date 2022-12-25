@@ -1,3 +1,11 @@
+### 插件推荐：
+
+#### 1.Vue 3  snippets  		作者：hollowtree
+
+
+
+### watch监视属性 概念：
+
 1.当被监视的属性变化时，回调函数自动调用，进行相关操作。
 
 2.监视的属性必须存在，才能进行监视
@@ -16,7 +24,7 @@
 
 `immediate:true`
 
-```
+```vue
     <div id="a">
         <h2>{{info}}</h2>
         <button @click="change">切换</button>
@@ -57,7 +65,7 @@
 
 ### 通过 `vm.$watch` 监视
 
-```
+```vue
     <div id="a">
         <h2>{{info}}</h2>
         <button @click="change">切换</button>
@@ -104,7 +112,7 @@
 
 #### 监视多级结构中，某一个属性的变化。
 
-```
+```vue
     <div id="a">
         <h2>a的值是{{numbers.a}}</h2>
         <button @click="add()">加</button>
@@ -142,7 +150,7 @@
 
 `deep:true`
 
-```
+```vue
     <div id="a">
         <h2>a的值是{{numbers.a}}</h2>
         <button @click="adda()">加</button>
@@ -190,7 +198,7 @@
 
 内部`watch`配置时，当只有 `handler`函数时，可以使用简写形式，如果有配置项`immediate:true`    、 `deep:true` 的话，不可以使用简写形式
 
-```
+```vue
     <div id="a">
         <h3>{{info}}</h3>
         <button @click="change">按钮</button>
@@ -228,7 +236,7 @@
 
 通过`vm.$watch`外部简写，当只有 `handler`函数时，可以使用简写形式，如果有配置项`immediate:true`    、 `deep:true` 的话，不可以使用简写形式
 
-```
+```vue
     <div id="a">
         <h3>{{info}}</h3>
         <button @click="change">按钮</button>
@@ -256,4 +264,60 @@
         })
     </script
 ```
+
+
+
+
+
+### `computed` 和 `watch` 之间的区别
+
+1. `computed` 能完成的功能，`watch`都可以完成
+2. `watch`能完成的功能，`computed` 不一定能完成，例如：`watch`可以进行异步操作
+
+​    
+
+两个重要的小原则：
+
+1. 所有Vue管理的函数，最好写成普通函数，这样 this 的指向才是 vm 或 组件实例对象
+2. 所有不被Vue管理的函数(定时器的回调函数，ajax 的回调函数等、Promise的回调函数)，最好写成 箭头函数。
+
+
+
+​      这是 this 的指向 才是 vm 或组件实例对象
+
+
+
+```vue
+     <div id="root">
+        <input type="text" v-model="firstname">
+        <br>
+        <br>
+        <input type="text" v-model="lastname">
+        <h2>{{fullName}}</h2>
+     </div>
+
+     <script>
+        new Vue({
+            el:'#root',
+            data:{
+                firstname:"张",
+                lastname:'三',
+                fullName:'张三'
+            },
+            watch:{
+                firstname(newVlaue){
+                    setTimeout(() => {
+                        this.fullName = newVlaue + '-'+this.lastname;
+                    }, 1000); 
+                    
+                },
+                lastname(newValue){
+                    this.fullName = this.firstname + '-' + newValue;
+                }
+            }
+        })
+     </script>
+```
+
+
 

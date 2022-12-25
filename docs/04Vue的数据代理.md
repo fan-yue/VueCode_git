@@ -19,3 +19,7 @@
 ​      为每一个添加到 vm 上的属性，都指定了一个 getter / setter
 
 ​      在 getter / setter 内部去操作(读/写) data 中对应的属性
+
+
+
+**![image-20221223095212763](04Vue的数据代理.assets/image-20221223095212763.png)**

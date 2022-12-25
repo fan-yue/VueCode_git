@@ -24,7 +24,7 @@
 
 读取`computed`中的方法时，使用`get()`函数
 
-```
+```vue
     <div id="a">
         姓：<input type="text" v-model:value="first">
         <br>
@@ -63,7 +63,7 @@
 
 计算属性`computed`中只用到`get`读取属性，就可以使用简写形式，**只读不写**
 
-```
+```vue
     <div id="a">
         姓：<input type="text" v-model:value="first">
         <br>
@@ -96,7 +96,7 @@
 
 如果计算属性`computed`需要被修改，需要使用使用`set()`函数
 
-```
+```vue
     <div id="a">
         姓：<input type="text" v-model:value="first">
         <br>

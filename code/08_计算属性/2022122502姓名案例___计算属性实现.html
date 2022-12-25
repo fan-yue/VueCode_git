@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="../js//vue.js"></script>
+    <script src="../js/vue.js"></script>
 </head>
 <body>
-    <!-- 
+        <!-- 
         计算属性：
             1.定义：要用的属性不存在，要通过已有属性计算得来。
             2.原理：底层借助了 Object.definepropery 方法提供的 getter 和 setter
@@ -21,50 +21,35 @@
                 2.如果计算属性要被修改，必须写 set 函数去响应修改，并且 set 
      -->
 
-    <div id="a">
-        <p>{{name}}</p>
-        <hr>
+     <div id="root">
+        <input type="text" v-model="firstname">
+        <br><br>
+        <input type="text" v-model="lastname">
+        <br><br>
+        <h3>{{fullName}}</h3>
+     </div>
 
-        姓：<input type="text" v-model:value="first">
-        名：<input type="text" v-model:value="lastname">
-        测试<input type="text" v-model:value="x">
-        <p>{{fn}}</p>
-        <p>{{fn}}</p>
-        <p>{{fn}}</p>
-        <p>{{fn}}</p>
-        <p>{{fn}}</p>
-    </div>
-
-    <script>
-        const vm =new Vue({
-            el:'#a',
+     <script>
+        const vm = new Vue({
+            el:"#root",
             data:{
-                name:"YF",
-                first:"张",
-                lastname:'三',
-                x:'你哈'
+                firstname:"张",
+                lastname:"三"
             },
-            computed:{ 
-                fn:{
-                    // get的作用？当有人读取 fn方法时，get就会被调用，并且返回值就作为 fn 的值
-                    // get什么时候调用？
-                        // 1.初次读取 fn 方法时
-                        // 2.所依赖的数据发生变化
+            computed:{
+                fullName:{
                     get(){
-                        console.log('get被调用');
-                        return this.first+'-'+this.lastname;
+                        return this.firstname + '-' + this.lastname;
                     },
-                    // set 什么时候被调用？ fn 被修改时调用
                     set(value){
-                        console.log('set',value);
+                        console.log('测试',value);
                         const arr = value.split('-');
-                        this.first = arr[0];
+                        this.firstname = arr[0];
                         this.lastname = arr[1];
                     }
-
                 }
             }
         })
-    </script>
+     </script>
 </body>
 </html>
